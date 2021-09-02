@@ -1,15 +1,22 @@
+// helloExpressions.js
+
 import { LightningElement } from 'lwc';
-export default class App extends LightningElement {
-   name = 'Electra X4';
-   description = 'A sweet bike built for comfort.';
-   category = 'Mountain';
-   material = 'Steel';
-   price = '$2,700';
-   pictureUrl = 'https://s3-us-west-1.amazonaws.com/sfdc-demo/ebikes/electrax4.jpg';
-   ready = false;
-   connectedCallback() {
-       setTimeout(() => {
-           this.ready = true;
-       }, 3000);
-   }
+
+export default class HelloExpressions extends LightningElement {
+
+    firstName = '';
+    lastName = '';
+
+    handleChange(event) {
+        const field = event.target.name;
+        if (field === 'firstName') {
+            this.firstName = event.target.value;
+        } else if (field === 'lastName') {
+            this.lastName = event.target.value;
+        }
+    }
+
+    get uppercasedFullName() {
+        return `${this.firstName} ${this.lastName}`.trim().toUpperCase();
+    }
 }
